@@ -39,19 +39,19 @@
                 android:layout_marginTop="4.0dip"
                 android:orientation="horizontal" >
 
-                <Button
-                    android:id="@+id/btnPlay"
+                <TextView
+                    android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="播放" >
-                </Button>
-
-                <Button
-                    android:id="@+id/btnStop"
-                    android:layout_width="80dip"
+                    android:text="原野小英雄" >
+                </TextView>
+                
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="停止" >
-                </Button>
+                    android:text="00:00/00:00" >
+                </TextView>
             </LinearLayout>
 
             <LinearLayout
