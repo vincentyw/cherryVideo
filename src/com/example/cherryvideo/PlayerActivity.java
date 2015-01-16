@@ -9,6 +9,7 @@ import tv.matchstick.flint.MediaStatus;
 import tv.matchstick.flint.RemoteMediaPlayer;
 
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -56,8 +57,10 @@ FlintStatusChangeListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		android.util.Log.d("XXXXXXXXXX", "onCreate");
+
 		setContentView(R.layout.activity_player);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); 
+//		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); 
 		findView();
 		videoList();
 		listener();
@@ -73,7 +76,10 @@ FlintStatusChangeListener {
 		mRefreshRunnable = new Runnable() {
 			@Override
 			public void run() {
+				android.util.Log.d("XXXXXXXXXX", "mSeeking = " + mSeeking);
 				if (!mSeeking) {
+					android.util.Log.d("XXXXXXXXXX", "mFlintVideoManager.getMediaCurrentTime() = " + mFlintVideoManager.getMediaCurrentTime());
+
 					refreshPlaybackPosition(mFlintVideoManager.getMediaCurrentTime(), mFlintVideoManager.getMediaDuration());
 				}
 				updateButtonStates();
@@ -100,6 +106,11 @@ FlintStatusChangeListener {
 		tvTime = (TextView)this.findViewById(R.id.tvTime);
 	}
 	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+	}
+
 	private void setupControls() {
 		
 		seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -138,6 +149,10 @@ FlintStatusChangeListener {
 	}
 	
 	private void refreshPlaybackPosition(long position, long duration) {
+		android.util.Log.d("XXXXXXXXXX", "position = " + position
+				+ "; duration = " + duration
+				+ "; mIsUserSeeking = " + mIsUserSeeking);
+
 		if (!mIsUserSeeking) {
 			if (position == 0) {
 				seekbar.setProgress(0);
@@ -153,7 +168,7 @@ FlintStatusChangeListener {
 				seekbar.setMax((int) TimeUnit.MILLISECONDS.toSeconds(duration));
 			}
 		}
-		
+		android.util.Log.d("XXXXXXXXXX", "text = " + formatTime(position)+"/"+formatTime(duration));
 		tvTime.setText(formatTime(position)+"/"+formatTime(duration));
 	}
 	
@@ -253,26 +268,36 @@ FlintStatusChangeListener {
     @Override
     protected void onStart() {
         super.onStart();
+		android.util.Log.d("XXXXXXXXXX", "onStart");
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+		android.util.Log.d("XXXXXXXXXX", "onResume");
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+		android.util.Log.d("XXXXXXXXXX", "onPause");
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+		android.util.Log.d("XXXXXXXXXX", "onStop");
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+		android.util.Log.d("XXXXXXXXXX", "onDestroy");
+
         mFlintVideoManager.destroy();
     }
 
