@@ -67,7 +67,7 @@ FlintStatusChangeListener {
 
 		mHandler = new Handler();
 
-		String applicationId = "~samplemediaplayer";  //TODO: change app name
+		String applicationId = "~flintplayer";  //TODO: change app name
 		Flint.FlintApi.setApplicationId(applicationId);
 		mFlintVideoManager = new FlintVideoManager(this, applicationId, this);
 

@@ -81,7 +81,7 @@ public class FlintVideoManager {
 	}
 
 	private String getAppUrl() {
-		return "http://openflint.github.io/simple-player-demo/receiver/index.html";
+		return "http://openflint.github.io/flint-player/player.html";
 	}
 
 	/**
